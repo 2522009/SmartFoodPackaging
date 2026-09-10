@@ -650,18 +650,68 @@ def chatbot():
 
 
 # =========================================================
+# QR PRODUCT INFORMATION PAGE
+# =========================================================
+
+@app.route("/qr")
+def qr_product():
+
+    try:
+
+        with open(
+            DB_FILE,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
+            food_database = json.load(f)
+
+        selected_food = request.args.get(
+            "product"
+        )
+
+        selected_data = None
+
+        if selected_food:
+
+            selected_data = food_database.get(
+                selected_food
+            )
+
+        return render_template(
+            "qr_product.html",
+            selected_food=selected_food,
+            selected_data=selected_data
+        )
+
+    except Exception as e:
+
+        return render_template(
+            "qr_product.html",
+            selected_food=None,
+            selected_data=None,
+            error=str(e)
+        )
+
+
+# =========================================================
 # QR CODE GENERATION
 # =========================================================
 
 @app.route("/generate-qr")
 def generate_qr_code():
 
-    url = request.args.get("url")
+    url = request.args.get(
+        "url"
+    )
 
     if not url:
+
         return "QR URL is missing", 400
 
-    return generate_qr(url)
+    return generate_qr(
+        url
+    )
 
 
 # =========================================================
