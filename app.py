@@ -410,6 +410,7 @@ def inspection():
 
 
             # Extra cleanup
+
             if (
                 image_path
                 and
@@ -587,7 +588,9 @@ def consumer():
         try:
 
             # FIXED FUNCTION NAME
+
             result = run_freshness_check()
+
 
         except Exception as e:
 
@@ -650,6 +653,37 @@ def chatbot():
 
 
 # =========================================================
+# QR GENERATOR PAGE
+# =========================================================
+
+@app.route("/qr-generator")
+def qr_generator():
+
+    try:
+
+        with open(
+            DB_FILE,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
+            food_database = json.load(f)
+
+        return render_template(
+            "qr_generator.html",
+            food_data=food_database
+        )
+
+    except Exception as e:
+
+        return render_template(
+            "qr_generator.html",
+            food_data={},
+            error=str(e)
+        )
+
+
+# =========================================================
 # QR PRODUCT INFORMATION PAGE
 # =========================================================
 
@@ -683,6 +717,7 @@ def qr_product():
             selected_food=selected_food,
             selected_data=selected_data
         )
+
 
     except Exception as e:
 
