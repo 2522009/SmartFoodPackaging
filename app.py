@@ -3,6 +3,8 @@ import json
 import os
 from werkzeug.utils import secure_filename
 
+from qr_system import generate_qr
+
 from smart_pack_inspector import (
     extract_indicator_hue,
     load_food_data,
@@ -645,6 +647,21 @@ def chatbot():
         user_message=user_message,
         quick_prompts=QUICK_PROMPTS
     )
+
+
+# =========================================================
+# QR CODE GENERATION
+# =========================================================
+
+@app.route("/generate-qr")
+def generate_qr_code():
+
+    url = request.args.get("url")
+
+    if not url:
+        return "QR URL is missing", 400
+
+    return generate_qr(url)
 
 
 # =========================================================
