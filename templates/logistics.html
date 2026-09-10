@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Logistics</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="navbar-brand">
+        Smart Food Packaging
+    </div>
+
+    <div>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/chatbot">
+            AI Assistant
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN CONTAINER ================= -->
+
+<div class="container">
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <h1>
+            🚚 Smart Logistics
+        </h1>
+
+        <p>
+            Monitor food transportation conditions
+            and estimate their effect on shelf life.
+        </p>
+
+        <p>
+            Analyze temperature, transit duration
+            and cold-chain performance.
+        </p>
+
+    </section>
+
+
+    <!-- ================= INPUT FORM ================= -->
+
+    <div class="result-box">
+
+        <h2>
+            📦 Shipment Details
+        </h2>
+
+        <p>
+            Enter the transportation information.
+        </p>
+
+
+        <form
+            method="POST"
+            action="/logistics"
+        >
+
+
+            <!-- ORIGIN -->
+
+            <div class="form-group">
+
+                <label for="origin">
+                    Origin
+                </label>
+
+                <input
+                    type="text"
+                    name="origin"
+                    id="origin"
+                    placeholder="Example: Ahmedabad, India"
+                    required
+                >
+
+            </div>
+
+
+            <!-- DESTINATION -->
+
+            <div class="form-group">
+
+                <label for="destination">
+                    Destination
+                </label>
+
+                <input
+                    type="text"
+                    name="destination"
+                    id="destination"
+                    placeholder="Example: Mumbai, India"
+                    required
+                >
+
+            </div>
+
+
+            <!-- TRANSIT HOURS -->
+
+            <div class="form-group">
+
+                <label for="transit_hours">
+                    Transit Duration (hours)
+                </label>
+
+                <input
+                    type="number"
+                    name="transit_hours"
+                    id="transit_hours"
+                    step="0.1"
+                    min="0.1"
+                    placeholder="Example: 14"
+                    required
+                >
+
+            </div>
+
+
+            <!-- TEMPERATURE -->
+
+            <div class="form-group">
+
+                <label for="actual_temp">
+                    Average Transit Temperature (°C)
+                </label>
+
+                <input
+                    type="number"
+                    name="actual_temp"
+                    id="actual_temp"
+                    step="0.1"
+                    placeholder="Example: 4"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn"
+            >
+
+                🚚 Analyze Shipment
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+    <!-- ================= ERROR ================= -->
+
+    {% if error %}
+
+    <div class="alert-error">
+
+        <strong>
+            Logistics Error
+        </strong>
+
+        <p>
+            {{ error }}
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ================= RESULTS ================= -->
+
+    {% if result %}
+
+
+    <div class="section-title">
+
+        <h2>
+            📊 Shipment Analysis
+        </h2>
+
+        <p>
+            Results generated from the logistics
+            and cold-chain analysis.
+        </p>
+
+    </div>
+
+
+    <!-- ================= PRODUCT INFORMATION ================= -->
+
+    <div class="result-box">
+
+        <h2>
+            🥛 Product Information
+        </h2>
+
+        <p>
+
+            <strong>
+                Product:
+            </strong>
+
+            {{ result.product_name }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Category:
+            </strong>
+
+            {{ result.category }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Initial Shelf Life:
+            </strong>
+
+            {{ result.initial_shelf_life }} days
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Remaining Shelf Life:
+            </strong>
+
+            {{ result.remaining_shelf_life }} days
+
+        </p>
+
+    </div>
+
+
+    <!-- ================= TRANSIT INFORMATION ================= -->
+
+    <div class="result-box">
+
+        <h2>
+            🚚 Transit Information
+        </h2>
+
+        <p>
+
+            <strong>
+                Origin:
+            </strong>
+
+            {{ result.origin }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Destination:
+            </strong>
+
+            {{ result.destination }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Transit Duration:
+            </strong>
+
+            {{ result.transit_hours }} hours
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Target Temperature:
+            </strong>
+
+            {{ result.target_temp }}°C
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Actual Average Temperature:
+            </strong>
+
+            {{ result.actual_avg_temp }}°C
+
+        </p>
+
+    </div>
+
+
+    <!-- ================= COLD CHAIN STATUS ================= -->
+
+    <div class="result-box">
+
+        <h2>
+            🌡️ Cold Chain Status
+        </h2>
+
+        <p>
+
+            <strong>
+                Status:
+            </strong>
+
+            {{ result.cold_chain_status }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Maximum Allowable Temperature:
+            </strong>
+
+            {{ result.max_allowable_temp }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Humidity Control:
+            </strong>
+
+            {{ result.humidity_control }}
+
+        </p>
+
+    </div>
+
+
+    <!-- ================= LOGISTICS ANALYSIS ================= -->
+
+    <div class="result-box">
+
+        <h2>
+            📈 Logistics Analysis
+        </h2>
+
+
+        {% if result.analysis %}
+
+
+        <p>
+
+            <strong>
+                Temperature Difference:
+            </strong>
+
+            {{ result.analysis.temperature_difference_c }}°C
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Acceleration Factor:
+            </strong>
+
+            {{ result.analysis.acceleration_factor }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Effective Shelf-Life Loss:
+            </strong>
+
+            {{ result.analysis.effective_days_lost }} days
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Analysis Time:
+            </strong>
+
+            {{ result.analysis.analysis_timestamp }}
+
+        </p>
+
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ================= PACKAGING / TRANSIT REQUIREMENTS ================= -->
+
+    <div class="result-box">
+
+        <h2>
+            📦 Recommended Transit Protection
+        </h2>
+
+
+        <p>
+
+            <strong>
+                Outer Shipper:
+            </strong>
+
+            {{ result.outer_shipper }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Thermal Liner:
+            </strong>
+
+            {{ result.thermal_liner }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Refrigerant:
+            </strong>
+
+            {{ result.refrigerant }}
+
+        </p>
+
+
+    </div>
+
+
+    {% endif %}
+
+
+    <!-- ================= BACK BUTTON ================= -->
+
+    <div style="margin-top: 30px;">
+
+        <a
+            href="/"
+            class="btn"
+        >
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    Smart Food Packaging System
+
+    <br>
+
+    AI-Based Intelligent Food Packaging
+    Material Recommendation System
+
+</footer>
+
+
+</body>
+
+</html>

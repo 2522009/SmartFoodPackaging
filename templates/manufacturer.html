@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Manufacturer Packaging</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     NAVBAR
+     ========================================== -->
+
+<nav class="navbar">
+
+    <div class="navbar-brand">
+        Smart Food Packaging
+    </div>
+
+    <div>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/chatbot">
+            AI Assistant
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     MAIN CONTENT
+     ========================================== -->
+
+<div class="container">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="hero">
+
+        <h1>
+            🏭 Manufacturer Packaging
+        </h1>
+
+        <p>
+            Packaging specifications for food
+            manufacturers and packaging designers.
+        </p>
+
+    </section>
+
+
+    <!-- ==========================================
+         PRODUCT SELECTION
+         ========================================== -->
+
+    <div class="result-box">
+
+        <h2>
+            Select Food Product
+        </h2>
+
+        <p>
+            Choose a product to view its
+            recommended packaging specifications.
+        </p>
+
+
+        <form
+            method="GET"
+            action="/manufacturer"
+        >
+
+            <div class="form-group">
+
+                <label for="product">
+                    Food Product
+                </label>
+
+
+                <select
+                    name="product"
+                    id="product"
+                    required
+                >
+
+                    <option value="">
+                        -- Select Product --
+                    </option>
+
+
+                    {% for product in manufacturer_data %}
+
+                    <option
+                        value="{{ product }}"
+                        {% if product == selected_product %}
+                            selected
+                        {% endif %}
+                    >
+
+                        {{ product }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                View Specifications
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- ==========================================
+         SELECTED PRODUCT
+         ========================================== -->
+
+    {% if selected_data %}
+
+
+    <div class="section-title">
+
+        <h2>
+            {{ selected_product }}
+        </h2>
+
+        <p>
+            Recommended manufacturer packaging
+            specification.
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         PRODUCT INFORMATION
+         ========================================== -->
+
+    <div class="result-box">
+
+        <h2>
+            📋 Product Information
+        </h2>
+
+
+        {% for key, value in selected_data.items() %}
+
+            {% if value is not mapping and value is not sequence
+            or value is string %}
+
+            <p>
+
+                <strong>
+                    {{ key.replace("_", " ").title() }}:
+                </strong>
+
+                {{ value }}
+
+            </p>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- ==========================================
+         DETAILED SPECIFICATIONS
+         ========================================== -->
+
+    {% for key, value in selected_data.items() %}
+
+        {% if value is mapping %}
+
+
+        <div class="result-box">
+
+            <h2>
+                📦 {{ key.replace("_", " ").title() }}
+            </h2>
+
+
+            {% for sub_key, sub_value in value.items() %}
+
+            <p>
+
+                <strong>
+                    {{ sub_key.replace("_", " ").title() }}:
+                </strong>
+
+                {{ sub_value }}
+
+            </p>
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% endif %}
+
+    {% endfor %}
+
+
+    {% endif %}
+
+
+    <!-- ==========================================
+         BACK TO DASHBOARD
+         ========================================== -->
+
+    <div style="margin-top: 30px;">
+
+        <a
+            href="/"
+            class="btn"
+        >
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+
+<footer class="footer">
+
+    Smart Food Packaging System
+
+    <br>
+
+    AI-Based Intelligent Food Packaging
+    Material Recommendation System
+
+</footer>
+
+
+</body>
+
+</html>

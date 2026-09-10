@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Pack Inspector</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="navbar-brand">
+        Smart Food Packaging
+    </div>
+
+    <div>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/chatbot">
+            AI Assistant
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN CONTAINER ================= -->
+
+<div class="container">
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <h1>
+            🔍 Smart Pack Inspector
+        </h1>
+
+        <p>
+            Analyze the smart packaging indicator
+            to estimate food quality.
+        </p>
+
+        <p>
+            Upload the indicator image and enter
+            the storage temperature for analysis.
+        </p>
+
+    </section>
+
+
+    <!-- ================= INSPECTION FORM ================= -->
+
+    <div class="result-box">
+
+        <h2>
+            Inspect Food Package
+        </h2>
+
+        <p>
+            Enter the required information below.
+        </p>
+
+
+        <form
+            method="POST"
+            action="/inspection"
+            enctype="multipart/form-data"
+        >
+
+
+            <!-- FOOD ITEM -->
+
+            <div class="form-group">
+
+                <label for="food_item">
+                    Food Item
+                </label>
+
+                <select
+                    name="food_item"
+                    id="food_item"
+                    required
+                >
+
+                    <option value="">
+                        -- Select Food --
+                    </option>
+
+
+                    <!-- IMPORTANT:
+                         value must exactly match
+                         smart_pack_inspector.py
+                    -->
+
+                    <option value="Strawberries">
+                        Strawberry
+                    </option>
+
+                    <option value="Fresh Milk">
+                        Fresh Milk
+                    </option>
+
+                    <option value="Raw Poultry/Chicken">
+                        Chicken
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- STORAGE TEMPERATURE -->
+
+            <div class="form-group">
+
+                <label for="storage_temp">
+                    Storage Temperature (°C)
+                </label>
+
+                <input
+                    type="number"
+                    name="storage_temp"
+                    id="storage_temp"
+                    step="0.1"
+                    placeholder="Example: 4"
+                    required
+                >
+
+            </div>
+
+
+            <!-- IMAGE UPLOAD -->
+
+            <div class="form-group">
+
+                <label for="image">
+                    Smart Indicator Image
+                </label>
+
+                <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    accept="image/*"
+                    required
+                >
+
+            </div>
+
+
+            <!-- SUBMIT BUTTON -->
+
+            <button
+                type="submit"
+                class="btn"
+            >
+
+                🔬 Analyze Package
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+    <!-- ================= ERROR MESSAGE ================= -->
+
+    {% if error %}
+
+    <div class="alert-error">
+
+        <strong>
+            Inspection Error:
+        </strong>
+
+        <p>
+            {{ error }}
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ================= RESULT ================= -->
+
+    {% if result %}
+
+    <div class="section-title">
+
+        <h2>
+            📊 Inspection Result
+        </h2>
+
+        <p>
+            Analysis generated from the submitted
+            indicator image and storage conditions.
+        </p>
+
+    </div>
+
+
+    <div class="result-box">
+
+        <h2>
+            🔬 Analysis Details
+        </h2>
+
+
+        {% for key, value in result.items() %}
+
+        <p>
+
+            <strong>
+                {{ key.replace("_", " ").title() }}:
+            </strong>
+
+            {{ value }}
+
+        </p>
+
+        {% endfor %}
+
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ================= BACK BUTTON ================= -->
+
+    <div style="margin-top: 30px;">
+
+        <a
+            href="/"
+            class="btn"
+        >
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    Smart Food Packaging System
+
+    <br>
+
+    AI-Based Intelligent Food Packaging
+    Material Recommendation System
+
+</footer>
+
+
+</body>
+
+</html>

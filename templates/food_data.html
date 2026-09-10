@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Food & Packaging Recommendation</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     NAVBAR
+     ========================================== -->
+
+<nav class="navbar">
+
+    <div class="navbar-brand">
+        Smart Food Packaging
+    </div>
+
+    <div>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/chatbot">
+            AI Assistant
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     MAIN CONTENT
+     ========================================== -->
+
+<div class="container">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="hero">
+
+        <h1>
+            🍱 Food & Packaging Recommendation
+        </h1>
+
+        <p>
+            Select a food category to explore
+            its intelligent packaging recommendation.
+        </p>
+
+    </section>
+
+
+    <!-- ==========================================
+         FOOD SELECTION
+         ========================================== -->
+
+    <div class="result-box">
+
+        <h2>
+            Select Food Category
+        </h2>
+
+        <p>
+            Choose a food product from the database.
+        </p>
+
+
+        <form
+            method="GET"
+            action="/food-data"
+        >
+
+            <div class="form-group">
+
+                <label for="category">
+                    Food Category
+                </label>
+
+                <select
+                    name="category"
+                    id="category"
+                    required
+                >
+
+                    <option value="">
+                        -- Select Food --
+                    </option>
+
+
+                    {% for category in food_data %}
+
+                    <option
+                        value="{{ category }}"
+                        {% if category == selected_category %}
+                            selected
+                        {% endif %}
+                    >
+
+                        {{ category }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Get Recommendation
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- ==========================================
+         RECOMMENDATION
+         ========================================== -->
+
+    {% if selected_data %}
+
+
+    <div class="section-title">
+
+        <h2>
+            Recommendation for {{ selected_category }}
+        </h2>
+
+        <p>
+            Packaging and storage specifications
+            from the food database.
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         BASIC INFORMATION
+         ========================================== -->
+
+    <div class="result-box">
+
+        <h2>
+            📋 Basic Information
+        </h2>
+
+
+        <p>
+
+            <strong>
+                Base Shelf Life:
+            </strong>
+
+            {{ selected_data.base_shelf_life_days }}
+            days
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Target Storage Temperature:
+            </strong>
+
+            {{ selected_data.target_storage_temp_c }}
+            °C
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Fresh pH Range:
+            </strong>
+
+            {{ selected_data.fresh_ph_range[0] }}
+
+            -
+
+            {{ selected_data.fresh_ph_range[1] }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Spoiled pH Threshold:
+            </strong>
+
+            {{ selected_data.spoiled_ph_threshold }}
+
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         PH INDICATOR
+         ========================================== -->
+
+    <div class="result-box">
+
+        <h2>
+            🧪 pH Indicator
+        </h2>
+
+
+        <p>
+
+            <strong>
+                Dye:
+            </strong>
+
+            {{ selected_data.ph_indicator.dye }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Substrate:
+            </strong>
+
+            {{ selected_data.ph_indicator.substrate }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Method:
+            </strong>
+
+            {{ selected_data.ph_indicator.method }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Color Profile:
+            </strong>
+
+            {{ selected_data.ph_indicator.color_profile }}
+
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         PACKAGING RECOMMENDATION
+         ========================================== -->
+
+    <div class="result-box">
+
+        <h2>
+            📦 Packaging Recommendation
+        </h2>
+
+
+        <p>
+
+            <strong>
+                Primary Film:
+            </strong>
+
+            {{ selected_data.packaging_materials.primary_film }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Secondary Outer:
+            </strong>
+
+            {{ selected_data.packaging_materials.secondary_outer }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                MAP Gas:
+            </strong>
+
+            {{ selected_data.packaging_materials.map_gas }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Barrier Specifications:
+            </strong>
+
+            {{ selected_data.packaging_materials.barrier_specs }}
+
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         TRANSIT SPECIFICATIONS
+         ========================================== -->
+
+    <div class="result-box">
+
+        <h2>
+            🚚 Transit Specifications
+        </h2>
+
+
+        <p>
+
+            <strong>
+                Target Temperature:
+            </strong>
+
+            {{ selected_data.transit_specs.target_temp_range }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Maximum Allowable Temperature:
+            </strong>
+
+            {{ selected_data.transit_specs.max_allowable_temp }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Humidity:
+            </strong>
+
+            {{ selected_data.transit_specs.humidity_control }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Outer Shipper:
+            </strong>
+
+            {{ selected_data.transit_specs.outer_shipper }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Thermal Liner:
+            </strong>
+
+            {{ selected_data.transit_specs.thermal_liner }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Refrigerant:
+            </strong>
+
+            {{ selected_data.transit_specs.refrigerant }}
+
+        </p>
+
+    </div>
+
+
+    {% endif %}
+
+
+    <!-- ==========================================
+         BACK TO DASHBOARD
+         ========================================== -->
+
+    <div style="margin-top: 30px;">
+
+        <a
+            href="/"
+            class="btn"
+        >
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+
+<footer class="footer">
+
+    Smart Food Packaging System
+
+    <br>
+
+    AI-Based Intelligent Food Packaging
+    Material Recommendation System
+
+</footer>
+
+
+</body>
+
+</html>

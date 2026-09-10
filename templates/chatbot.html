@@ -1,0 +1,271 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Packaging Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="navbar-brand">
+        Smart Food Packaging
+    </div>
+
+    <div>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/chatbot">
+            AI Assistant
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN CONTAINER ================= -->
+
+<div class="container">
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <h1>
+            🤖 AI Packaging Assistant
+        </h1>
+
+        <p>
+            Ask questions about food packaging,
+            freshness indicators and cold-chain systems.
+        </p>
+
+        <p>
+            Get simple answers from the packaging
+            knowledge base.
+        </p>
+
+    </section>
+
+
+    <!-- ================= QUICK QUESTIONS ================= -->
+
+    {% if quick_prompts %}
+
+    <div class="section-title">
+
+        <h2>
+            ⚡ Quick Questions
+        </h2>
+
+        <p>
+            Choose a question to quickly ask the AI assistant.
+        </p>
+
+    </div>
+
+
+    <div style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    ">
+
+        {% for prompt in quick_prompts %}
+
+        <form
+            method="POST"
+            action="/chatbot"
+            style="margin: 0;"
+        >
+
+            <input
+                type="hidden"
+                name="message"
+                value="{{ prompt }}"
+            >
+
+            <button
+                type="submit"
+                style="
+                    background: white;
+                    border: 1px solid #cbd5e1;
+                    color: #12372a;
+                    padding: 10px 15px;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    transition: 0.2s;
+                "
+                onmouseover="this.style.background='#f1f5f9'"
+                onmouseout="this.style.background='white'"
+            >
+
+                {{ prompt }}
+
+            </button>
+
+        </form>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ================= CHAT INPUT ================= -->
+
+    <div class="result-box">
+
+        <h2>
+            💬 Ask Your Question
+        </h2>
+
+        <form
+            method="POST"
+            action="/chatbot"
+        >
+
+            <div class="form-group">
+
+                <label for="message">
+                    Your Question
+                </label>
+
+                <textarea
+                    name="message"
+                    id="message"
+                    rows="5"
+                    placeholder="Example: What is MAP packaging?"
+                    required
+                >{% if user_message %}{{ user_message }}{% endif %}</textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn"
+            >
+
+                🤖 Ask AI Assistant
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- ================= ERROR ================= -->
+
+    {% if error %}
+
+    <div class="alert-error">
+
+        <strong>
+            Chatbot Error
+        </strong>
+
+        <p>
+            {{ error }}
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ================= AI RESPONSE ================= -->
+
+    {% if response %}
+
+    <div class="section-title">
+
+        <h2>
+            🧠 AI Response
+        </h2>
+
+    </div>
+
+
+    <div class="result-box">
+
+        <h2>
+            {{ response.title }}
+        </h2>
+
+        <p style="
+            line-height: 1.7;
+            white-space: pre-line;
+        ">
+            {{ response.text }}
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ================= BACK BUTTON ================= -->
+
+    <div style="margin-top: 30px;">
+
+        <a
+            href="/"
+            class="btn"
+        >
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    Smart Food Packaging System
+
+    <br>
+
+    AI-Based Intelligent Food Packaging
+    Material Recommendation System
+
+</footer>
+
+
+</body>
+
+</html>
+

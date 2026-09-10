@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Food Database</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="navbar-brand">
+        Smart Food Packaging
+    </div>
+
+    <div>
+        <a href="/">Home</a>
+        <a href="/food-data">Food Data</a>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>🗄️ Food Packaging Database</h1>
+
+        <p>
+            Developer view of the food packaging
+            recommendation database.
+        </p>
+
+        <p>
+            This page shows the food categories
+            currently available in the system.
+        </p>
+
+    </section>
+
+
+    <!-- DATABASE SUMMARY -->
+
+    <div class="section-title">
+
+        <h2>📊 Database Summary</h2>
+
+        <p>
+            Current food categories stored in the database.
+        </p>
+
+    </div>
+
+
+    <div class="result-box">
+
+        <h2>
+            Total Food Categories
+        </h2>
+
+        <p style="
+            font-size: 32px;
+            font-weight: bold;
+            color: #12372a;
+            margin: 10px 0;
+        ">
+            {{ food_data|length }}
+        </p>
+
+    </div>
+
+
+    <!-- AVAILABLE FOODS -->
+
+    <div class="section-title">
+
+        <h2>🍎 Available Foods</h2>
+
+        <p>
+            Food categories available for testing
+            and recommendation.
+        </p>
+
+    </div>
+
+
+    <div class="module-grid">
+
+        {% for category in food_data %}
+
+        <div class="module-card">
+
+            <div class="module-icon">
+                🍱
+            </div>
+
+            <h3>
+                {{ category }}
+            </h3>
+
+            <p>
+                Packaging and storage information
+                available in the database.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div style="margin-top: 30px;">
+
+        <a
+            href="/food-data"
+            class="btn"
+        >
+            View Food Recommendations
+        </a>
+
+        <a
+            href="/"
+            class="btn"
+            style="margin-left: 10px;"
+        >
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+
+<footer class="footer">
+
+    Smart Food Packaging System
+    <br>
+
+    Developer / Database Testing Panel
+
+</footer>
+
+
+</body>
+</html>

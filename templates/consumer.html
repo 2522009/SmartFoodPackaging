@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Consumer Freshness Check</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="navbar-brand">
+        Smart Food Packaging
+    </div>
+
+    <div>
+        <a href="/">Home</a>
+        <a href="/chatbot">AI Assistant</a>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <section class="hero">
+
+        <h1>
+            🥗 Consumer Freshness Check
+        </h1>
+
+        <p>
+            Check the current freshness condition
+            of your packaged food.
+        </p>
+
+        <p>
+            Get a simple freshness status and
+            consumption recommendation.
+        </p>
+
+    </section>
+
+
+    <div class="result-box">
+
+        <h2>
+            Check Product Freshness
+        </h2>
+
+        <p>
+            The system will analyze the latest
+            package state and provide a freshness
+            recommendation.
+        </p>
+
+
+        <form method="POST">
+
+            <button type="submit" class="btn">
+                Check Freshness
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if error %}
+
+    <div class="alert-error">
+
+        <strong>Error:</strong>
+
+        {{ error }}
+
+    </div>
+
+    {% endif %}
+
+
+    {% if result %}
+
+    <div class="result-box">
+
+        <h2>
+            Freshness Result
+        </h2>
+
+
+        <p>
+            <strong>Product:</strong>
+            {{ result.product_name }}
+        </p>
+
+        <p>
+            <strong>Category:</strong>
+            {{ result.category }}
+        </p>
+
+        <p>
+            <strong>Manufacturing Date:</strong>
+            {{ result.mfg_date }}
+        </p>
+
+        <p>
+            <strong>Initial Shelf Life:</strong>
+            {{ result.initial_shelf_life }} days
+        </p>
+
+        <p>
+            <strong>Remaining Shelf Life:</strong>
+            {{ result.remaining_shelf_life }} days
+        </p>
+
+        <p>
+            <strong>Cold Chain:</strong>
+            {{ result.cold_chain_status }}
+        </p>
+
+        <hr>
+
+        <h3>
+            Freshness Status:
+            {{ result.freshness_status }}
+        </h3>
+
+        <p>
+            <strong>Recommendation:</strong>
+            {{ result.recommendation }}
+        </p>
+
+        <p>
+            <strong>Note:</strong>
+            {{ result.freshness_note }}
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    <div style="text-align:center; margin-top:30px;">
+
+        <a href="/" class="btn">
+            Go to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+
+<footer class="footer">
+
+    Smart Food Packaging System
+    <br>
+
+    AI-Based Intelligent Food Packaging
+    Material Recommendation System
+
+</footer>
+
+</body>
+
+</html>

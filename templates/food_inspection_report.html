@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Packaging Inspection Report</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #F8FAFC;
+            color: #0F172A;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #E2E8F0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #E2E8F0;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .badge {
+            background: #D1FAE5;
+            color: #065F46;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .card {
+            background: #F1F5F9;
+            padding: 1.25rem;
+            border-radius: 8px;
+        }
+        .card-title {
+            font-size: 0.8rem;
+            color: #64748B;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .card-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 0.25rem;
+        }
+        .progress-bg {
+            background: #CBD5E1;
+            height: 10px;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: #10B981;
+            height: 100%;
+            width: 96.7%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #E2E8F0;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        th { background: #F8FAFC; color: #64748B; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h2 style="margin:0;">Strawberries</h2>
+                <small style="color:#64748B;">Generated: 2026-09-09 11:28:25</small>
+            </div>
+            <div class="badge">SAFE TO EAT</div>
+        </div>
+
+        <div class="grid">
+            <div class="card" style="border-left: 5px solid #10B981;">
+                <div class="card-title">Freshness Index</div>
+                <div class="card-value" style="color: #10B981;">96.7%</div>
+                <div class="progress-bg"><div class="progress-fill"></div></div>
+            </div>
+            <div class="card">
+                <div class="card-title">Estimated Shelf Life</div>
+                <div class="card-value">1.2 Days</div>
+                <small style="color:#64748B;">At 22.0°C storage temp</small>
+            </div>
+        </div>
+
+        <h3>Technical Diagnostics</h3>
+        <table>
+            <tr><th>Parameter</th><th>Measured Value</th></tr>
+            <tr><td>Color Hue Angle (HSV)</td><td>136.0°</td></tr>
+            <tr><td>Storage Temperature</td><td>22.0°C</td></tr>
+            <tr><td>Recommended Action</td><td>
+                Safe for distribution and consumption.
+            </td></tr>
+        </table>
+    </div>
+</body>
+</html>
