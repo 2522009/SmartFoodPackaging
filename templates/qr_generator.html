@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Generator | Smart Food Packaging</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            color: #222;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+        }
+
+        select {
+            width: 100%;
+            padding: 13px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #222;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        #qrSection {
+            margin-top: 30px;
+            display: none;
+        }
+
+        #qrImage {
+            width: 280px;
+            max-width: 100%;
+            margin-top: 15px;
+        }
+
+        .product-name {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>QR Code Generator</h1>
+
+        <p>
+            Select a food product to automatically generate
+            its Smart Food Packaging QR code.
+        </p>
+
+        <select id="product">
+
+            <option value="">-- Select Food Product --</option>
+
+            {% for food in food_data %}
+                <option value="{{ food }}">
+                    {{ food }}
+                </option>
+            {% endfor %}
+
+        </select>
+
+        <button onclick="generateQR()">
+            Generate QR Code
+        </button>
+
+
+        <div id="qrSection">
+
+            <h2>Your QR Code</h2>
+
+            <img id="qrImage" src="" alt="QR Code">
+
+            <div class="product-name" id="productName"></div>
+
+            <p>
+                Scan this QR code with your phone
+                to view product information.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function generateQR() {
+
+    const product =
+        document.getElementById("product").value;
+
+    if (!product) {
+
+        alert("Please select a food product.");
+
+        return;
+    }
+
+
+    const productPage =
+        window.location.origin +
+        "/qr?product=" +
+        encodeURIComponent(product);
+
+
+    const qrUrl =
+        "/generate-qr?url=" +
+        encodeURIComponent(productPage);
+
+
+    document.getElementById("qrImage").src = qrUrl;
+
+    document.getElementById("productName").textContent =
+        product;
+
+    document.getElementById("qrSection").style.display =
+        "block";
+}
+
+</script>
+
+</body>
+
+</html>
