@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -87,14 +88,14 @@
 
             <div class="form-group">
 
-                <label for="product">
+                <label for="food">
                     Food Product
                 </label>
 
 
                 <select
-                    name="product"
-                    id="product"
+                    name="food"
+                    id="food"
                     required
                 >
 
@@ -107,7 +108,7 @@
 
                     <option
                         value="{{ product }}"
-                        {% if product == selected_product %}
+                        {% if product == selected_food %}
                             selected
                         {% endif %}
                     >
@@ -127,7 +128,9 @@
                 type="submit"
                 class="btn"
             >
+
                 View Specifications
+
             </button>
 
         </form>
@@ -145,7 +148,7 @@
     <div class="section-title">
 
         <h2>
-            {{ selected_product }}
+            {{ selected_food }}
         </h2>
 
         <p>
@@ -169,8 +172,7 @@
 
         {% for key, value in selected_data.items() %}
 
-            {% if value is not mapping and value is not sequence
-            or value is string %}
+            {% if value is not mapping and value is not sequence or value is string %}
 
             <p>
 
@@ -219,7 +221,6 @@
 
             {% endfor %}
 
-
         </div>
 
 
@@ -241,7 +242,9 @@
             href="/"
             class="btn"
         >
+
             ← Back to Dashboard
+
         </a>
 
     </div>
