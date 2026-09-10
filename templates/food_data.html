@@ -4,18 +4,18 @@
 
 <head>
 
-    <title>Food & Packaging Recommendation</title>
+```
+<title>Food & Packaging Recommendation</title>
 
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='style.css') }}"
-    >
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"
+>
+```
 
 </head>
 
-
 <body>
-
 
 <!-- ==========================================
      NAVBAR
@@ -23,24 +23,25 @@
 
 <nav class="navbar">
 
-    <div class="navbar-brand">
-        Smart Food Packaging
-    </div>
+```
+<div class="navbar-brand">
+    Smart Food Packaging
+</div>
 
-    <div>
+<div>
 
-        <a href="/">
-            Home
-        </a>
+    <a href="/">
+        Home
+    </a>
 
-        <a href="/chatbot">
-            AI Assistant
-        </a>
+    <a href="/chatbot">
+        AI Assistant
+    </a>
 
-    </div>
+</div>
+```
 
 </nav>
-
 
 <!-- ==========================================
      MAIN CONTENT
@@ -48,393 +49,436 @@
 
 <div class="container">
 
+```
+<!-- PAGE HEADER -->
 
-    <!-- PAGE HEADER -->
+<section class="hero">
 
-    <section class="hero">
+    <h1>
+        🍱 Food & Packaging Recommendation
+    </h1>
 
-        <h1>
-            🍱 Food & Packaging Recommendation
-        </h1>
+    <p>
+        Select a food category to explore
+        its intelligent packaging recommendation.
+    </p>
 
-        <p>
-            Select a food category to explore
-            its intelligent packaging recommendation.
-        </p>
-
-    </section>
-
-
-    <!-- ==========================================
-         FOOD SELECTION
-         ========================================== -->
-
-    <div class="result-box">
-
-        <h2>
-            Select Food Category
-        </h2>
-
-        <p>
-            Choose a food product from the database.
-        </p>
+</section>
 
 
-        <form
-            method="GET"
-            action="/food-data"
-        >
+<!-- ==========================================
+     FOOD SELECTION
+     ========================================== -->
 
-            <div class="form-group">
+<div class="result-box">
 
-                <label for="food">
-                    Food Category
-                </label>
+    <h2>
+        Select Food Category
+    </h2>
 
-
-                <select
-                    name="food"
-                    id="food"
-                    required
-                >
-
-                    <option value="">
-                        -- Select Food --
-                    </option>
+    <p>
+        Choose a food product from the database.
+    </p>
 
 
-                    {% for category in food_data %}
+    <form
+        method="GET"
+        action="/food-data"
+    >
 
-                    <option
-                        value="{{ category }}"
-                        {% if category == selected_food %}
-                            selected
-                        {% endif %}
-                    >
+        <div class="form-group">
 
-                        {{ category }}
-
-                    </option>
-
-                    {% endfor %}
-
-                </select>
-
-            </div>
+            <label for="food">
+                Food Category
+            </label>
 
 
-            <button
-                type="submit"
-                class="btn"
+            <select
+                name="food"
+                id="food"
+                required
             >
 
-                Get Recommendation
+                <option value="">
+                    -- Select Food --
+                </option>
 
-            </button>
 
-        </form>
+                {% for category in food_data %}
 
-    </div>
+                <option
+                    value="{{ category }}"
+                    {% if category == selected_food %}
+                        selected
+                    {% endif %}
+                >
 
+                    {{ category }}
 
-    <!-- ==========================================
-         RECOMMENDATION
-         ========================================== -->
+                </option>
 
-    {% if selected_data %}
+                {% endfor %}
 
+            </select>
 
-    <div class="section-title">
+        </div>
 
-        <h2>
-            Recommendation for {{ selected_food }}
-        </h2>
 
-        <p>
-            Packaging and storage specifications
-            from the food database.
-        </p>
-
-    </div>
-
-
-    <!-- ==========================================
-         BASIC INFORMATION
-         ========================================== -->
-
-    <div class="result-box">
-
-        <h2>
-            📋 Basic Information
-        </h2>
-
-
-        <p>
-
-            <strong>
-                Base Shelf Life:
-            </strong>
-
-            {{ selected_data.base_shelf_life_days }}
-            days
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Target Storage Temperature:
-            </strong>
-
-            {{ selected_data.target_storage_temp_c }}
-            °C
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Fresh pH Range:
-            </strong>
-
-            {{ selected_data.fresh_ph_range[0] }}
-            -
-            {{ selected_data.fresh_ph_range[1] }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Spoiled pH Threshold:
-            </strong>
-
-            {{ selected_data.spoiled_ph_threshold }}
-
-        </p>
-
-    </div>
-
-
-    <!-- ==========================================
-         PH INDICATOR
-         ========================================== -->
-
-    <div class="result-box">
-
-        <h2>
-            🧪 pH Indicator
-        </h2>
-
-
-        <p>
-
-            <strong>
-                Dye:
-            </strong>
-
-            {{ selected_data.ph_indicator.dye }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Substrate:
-            </strong>
-
-            {{ selected_data.ph_indicator.substrate }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Method:
-            </strong>
-
-            {{ selected_data.ph_indicator.method }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Color Profile:
-            </strong>
-
-            {{ selected_data.ph_indicator.color_profile }}
-
-        </p>
-
-    </div>
-
-
-    <!-- ==========================================
-         PACKAGING RECOMMENDATION
-         ========================================== -->
-
-    <div class="result-box">
-
-        <h2>
-            📦 Packaging Recommendation
-        </h2>
-
-
-        <p>
-
-            <strong>
-                Primary Film:
-            </strong>
-
-            {{ selected_data.packaging_materials.primary_film }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Secondary Outer:
-            </strong>
-
-            {{ selected_data.packaging_materials.secondary_outer }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                MAP Gas:
-            </strong>
-
-            {{ selected_data.packaging_materials.map_gas }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Barrier Specifications:
-            </strong>
-
-            {{ selected_data.packaging_materials.barrier_specs }}
-
-        </p>
-
-    </div>
-
-
-    <!-- ==========================================
-         TRANSIT SPECIFICATIONS
-         ========================================== -->
-
-    <div class="result-box">
-
-        <h2>
-            🚚 Transit Specifications
-        </h2>
-
-
-        <p>
-
-            <strong>
-                Target Temperature:
-            </strong>
-
-            {{ selected_data.transit_specs.target_temp_range }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Maximum Allowable Temperature:
-            </strong>
-
-            {{ selected_data.transit_specs.max_allowable_temp }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Humidity:
-            </strong>
-
-            {{ selected_data.transit_specs.humidity_control }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Outer Shipper:
-            </strong>
-
-            {{ selected_data.transit_specs.outer_shipper }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Thermal Liner:
-            </strong>
-
-            {{ selected_data.transit_specs.thermal_liner }}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Refrigerant:
-            </strong>
-
-            {{ selected_data.transit_specs.refrigerant }}
-
-        </p>
-
-    </div>
-
-
-    {% endif %}
-
-
-    <!-- ==========================================
-         BACK TO DASHBOARD
-         ========================================== -->
-
-    <div style="margin-top: 30px;">
-
-        <a
-            href="/"
+        <button
+            type="submit"
             class="btn"
         >
 
-            ← Back to Dashboard
+            Get Recommendation
 
-        </a>
+        </button>
 
-    </div>
-
+    </form>
 
 </div>
 
+
+<!-- ==========================================
+     RECOMMENDATION
+     ========================================== -->
+
+{% if selected_data %}
+
+
+<div class="section-title">
+
+    <h2>
+        Recommendation for {{ selected_food }}
+    </h2>
+
+    <p>
+        Packaging and storage specifications
+        from the food database.
+    </p>
+
+</div>
+
+
+<!-- ==========================================
+     AUTOMATIC QR CODE
+     ========================================== -->
+
+<div class="result-box" style="text-align: center;">
+
+    <h2>
+        📱 Product QR Code
+    </h2>
+
+    <p>
+        Scan this QR code to view the product
+        information on any phone.
+    </p>
+
+
+    <img
+        src="/generate-qr?url={{ request.url_root.rstrip('/') }}/qr?product={{ selected_food | urlencode }}"
+        alt="Product QR Code"
+        style="
+            width: 250px;
+            max-width: 100%;
+            margin: 20px auto;
+            display: block;
+        "
+    >
+
+
+    <p>
+        <strong>
+            {{ selected_food }}
+        </strong>
+    </p>
+
+
+    <p style="font-size: 14px; color: #666;">
+
+        Scan with your phone camera
+
+    </p>
+
+</div>
+
+
+<!-- ==========================================
+     BASIC INFORMATION
+     ========================================== -->
+
+<div class="result-box">
+
+    <h2>
+        📋 Basic Information
+    </h2>
+
+
+    <p>
+
+        <strong>
+            Base Shelf Life:
+        </strong>
+
+        {{ selected_data.base_shelf_life_days }}
+        days
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Target Storage Temperature:
+        </strong>
+
+        {{ selected_data.target_storage_temp_c }}
+        °C
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Fresh pH Range:
+        </strong>
+
+        {{ selected_data.fresh_ph_range[0] }}
+        -
+        {{ selected_data.fresh_ph_range[1] }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Spoiled pH Threshold:
+        </strong>
+
+        {{ selected_data.spoiled_ph_threshold }}
+
+    </p>
+
+</div>
+
+
+<!-- ==========================================
+     PH INDICATOR
+     ========================================== -->
+
+<div class="result-box">
+
+    <h2>
+        🧪 pH Indicator
+    </h2>
+
+
+    <p>
+
+        <strong>
+            Dye:
+        </strong>
+
+        {{ selected_data.ph_indicator.dye }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Substrate:
+        </strong>
+
+        {{ selected_data.ph_indicator.substrate }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Method:
+        </strong>
+
+        {{ selected_data.ph_indicator.method }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Color Profile:
+        </strong>
+
+        {{ selected_data.ph_indicator.color_profile }}
+
+    </p>
+
+</div>
+
+
+<!-- ==========================================
+     PACKAGING RECOMMENDATION
+     ========================================== -->
+
+<div class="result-box">
+
+    <h2>
+        📦 Packaging Recommendation
+    </h2>
+
+
+    <p>
+
+        <strong>
+            Primary Film:
+        </strong>
+
+        {{ selected_data.packaging_materials.primary_film }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Secondary Outer:
+        </strong>
+
+        {{ selected_data.packaging_materials.secondary_outer }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            MAP Gas:
+        </strong>
+
+        {{ selected_data.packaging_materials.map_gas }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Barrier Specifications:
+        </strong>
+
+        {{ selected_data.packaging_materials.barrier_specs }}
+
+    </p>
+
+</div>
+
+
+<!-- ==========================================
+     TRANSIT SPECIFICATIONS
+     ========================================== -->
+
+<div class="result-box">
+
+    <h2>
+        🚚 Transit Specifications
+    </h2>
+
+
+    <p>
+
+        <strong>
+            Target Temperature:
+        </strong>
+
+        {{ selected_data.transit_specs.target_temp_range }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Maximum Allowable Temperature:
+        </strong>
+
+        {{ selected_data.transit_specs.max_allowable_temp }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Humidity:
+        </strong>
+
+        {{ selected_data.transit_specs.humidity_control }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Outer Shipper:
+        </strong>
+
+        {{ selected_data.transit_specs.outer_shipper }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Thermal Liner:
+        </strong>
+
+        {{ selected_data.transit_specs.thermal_liner }}
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Refrigerant:
+        </strong>
+
+        {{ selected_data.transit_specs.refrigerant }}
+
+    </p>
+
+</div>
+
+
+{% endif %}
+
+
+<!-- ==========================================
+     BACK TO DASHBOARD
+     ========================================== -->
+
+<div style="margin-top: 30px;">
+
+    <a
+        href="/"
+        class="btn"
+    >
+
+        ← Back to Dashboard
+
+    </a>
+
+</div>
+```
+
+</div>
 
 <!-- ==========================================
      FOOTER
@@ -442,15 +486,16 @@
 
 <footer class="footer">
 
-    Smart Food Packaging System
+```
+Smart Food Packaging System
 
-    <br>
+<br>
 
-    AI-Based Intelligent Food Packaging
-    Material Recommendation System
+AI-Based Intelligent Food Packaging
+Material Recommendation System
+```
 
 </footer>
-
 
 </body>
 
