@@ -1,0 +1,50 @@
+{
+    "Fresh Paneer / Cottage Cheese": {
+        "category": "Dairy / High Moisture",
+        "primary_spoilage": "Lactic acid decay & mold growth (headspace pH drop)",
+        "base_shelf_life_days": 4,
+        "recommended_indicator": "Anthocyanin-Cellulose pH Strip (Red-to-Blue shift)",
+        "optimal_headspace_gas": "70% CO2 / 30% N2 (Modified Atmosphere Packaging)",
+        "recommended_film": "High-Barrier EVOH + Bio-PLA Laminate",
+        "mvtr_target": "< 3.0 g/m\u00b2/day (Moisture Barrier)",
+        "otr_target": "< 10.0 cm\u00b3/m\u00b2/day (Oxygen Barrier)",
+        "unit_cost_inr": 2.4,
+        "eco_rating": "8.5 / 10 (Recyclable Bio-Laminate)"
+    },
+    "Fresh Strawberries / Berries": {
+        "category": "Fresh Produce / High Respiration",
+        "primary_spoilage": "Ethylene gas buildup & Botrytis mold growth",
+        "base_shelf_life_days": 5,
+        "recommended_indicator": "Curcumin/Chitosan Ethylene & Humidity Indicator Film",
+        "optimal_headspace_gas": "Macro-perforated Equilibrium Atmosphere (5% O2 / 10% CO2)",
+        "recommended_film": "Micro-perforated Biodegradable Cellulose Film",
+        "mvtr_target": "15.0 - 20.0 g/m\u00b2/day (Controlled Transpiration)",
+        "otr_target": "High Permeability (Respiration Dependent)",
+        "unit_cost_inr": 1.8,
+        "eco_rating": "9.5 / 10 (100% Home Compostable)"
+    },
+    "Fresh Bakery / Whole Wheat Bread": {
+        "category": "Bakery / Medium Moisture",
+        "primary_spoilage": "Stalling & Aspergillus Niger (Fungal Spoilage)",
+        "base_shelf_life_days": 6,
+        "recommended_indicator": "Volatile Acid & Oxygen Leakage Strip",
+        "optimal_headspace_gas": "100% N2 (Flush Packaging to displace O2)",
+        "recommended_film": "Recyclable Polypropylene (PP) with Bio-sachet",
+        "mvtr_target": "< 1.5 g/m\u00b2/day (Prevents Moisture Loss)",
+        "otr_target": "< 50.0 cm\u00b3/m\u00b2/day",
+        "unit_cost_inr": 1.2,
+        "eco_rating": "7.8 / 10 (Fully Recyclable Monomaterial)"
+    },
+    "Cut Leafy Greens / Spinach": {
+        "category": "Produce / Rapid Decay",
+        "primary_spoilage": "Enzymatic browning & anaerobic fermentation",
+        "base_shelf_life_days": 3,
+        "recommended_indicator": "Total Volatile Organic Compound (TVOC) Colorimetric Label",
+        "optimal_headspace_gas": "3% O2 / 10% CO2 / 87% N2",
+        "recommended_film": "Anti-fog Coated PLA Bio-film",
+        "mvtr_target": "10.0 - 12.0 g/m\u00b2/day",
+        "otr_target": "Medium-High Permeability",
+        "unit_cost_inr": 1.95,
+        "eco_rating": "9.0 / 10 (Compostable Bio-Plastic)"
+    }
+}

@@ -1,0 +1,158 @@
+{
+  "High Protein / Dairy (e.g., Paneer, Cottage Cheese)": {
+    "base_shelf_life_days": 7,
+    "target_storage_temp_c": 4.0,
+    "fresh_ph_range": [5.5, 6.2],
+    "spoiled_ph_threshold": 6.8,
+    "ph_indicator": {
+      "dye": "Anthocyanin (Red Cabbage Extract)",
+      "substrate": "Carboxymethyl Cellulose (CMC) / Chitosan Film",
+      "method": "Cross-linked Solvent Casting with Glycerol",
+      "color_profile": "Red/Pink (Fresh) -> Violet (Borderline) -> Green/Yellow (Spoiled)"
+    },
+    "packaging_materials": {
+      "primary_film": "EVOH / PA / PE High-Barrier Laminate (or PLA/Chitosan Blend)",
+      "secondary_outer": "Corrugated Cardboard Case with Thermal Liner",
+      "map_gas": "70% N2 / 30% CO2",
+      "barrier_specs": "OTR < 1.5 cc/m²/day | WVTR < 3.0 g/m²/day"
+    },
+    "transit_specs": {
+      "target_temp_range": "2.0°C to 4.0°C",
+      "max_allowable_temp": "6.0°C",
+      "humidity_control": "60% - 70% RH",
+      "outer_shipper": "Expanded Polypropylene (EPP) Insulated Crates",
+      "thermal_liner": "Vacuum Insulation Panels (VIP) / Reflective Bubble Film",
+      "refrigerant": "Gel Ice Packs (0°C PCMs) or Active Reefer"
+    }
+  },
+  "Plant Protein / Soy (e.g., Tofu, Tempeh)": {
+    "base_shelf_life_days": 10,
+    "target_storage_temp_c": 3.0,
+    "fresh_ph_range": [5.8, 6.4],
+    "spoiled_ph_threshold": 7.0,
+    "ph_indicator": {
+      "dye": "Bromocresol Purple / Anthocyanin Blend",
+      "substrate": "Pectin / Bacterial Cellulose Composite",
+      "method": "Ionic Cross-linking with Calcium Chloride",
+      "color_profile": "Yellow (Fresh) -> Light Purple (Borderline) -> Deep Blue (Spoiled)"
+    },
+    "packaging_materials": {
+      "primary_film": "High-Barrier Polypropylene (PP) Retort Tray with Lidding Film",
+      "secondary_outer": "Recyclable Fiberboard Outer Box",
+      "map_gas": "80% N2 / 20% CO2 (or Water Immersion Seal)",
+      "barrier_specs": "OTR < 2.0 cc/m²/day | WVTR < 1.0 g/m²/day"
+    },
+    "transit_specs": {
+      "target_temp_range": "1.0°C to 4.0°C",
+      "max_allowable_temp": "7.0°C",
+      "humidity_control": "65% - 75% RH",
+      "outer_shipper": "Rigid Thermal Insulated Reefer Container",
+      "thermal_liner": "Metallized PET Bubble Wrap",
+      "refrigerant": "Phase Change Material (PCM) Gel Plates"
+    }
+  },
+  "High Respiration Fruits (e.g., Strawberries, Berries)": {
+    "base_shelf_life_days": 5,
+    "target_storage_temp_c": 1.0,
+    "fresh_ph_range": [3.3, 3.8],
+    "spoiled_ph_threshold": 4.6,
+    "ph_indicator": {
+      "dye": "Curcumin Extract",
+      "substrate": "Bacterial Cellulose / Starch Nanocomposite",
+      "method": "In-situ adsorption onto porous matrix",
+      "color_profile": "Bright Yellow (Fresh) -> Orange/Red (Spoiled)"
+    },
+    "packaging_materials": {
+      "primary_film": "Micro-perforated BOPP or Biodegradable Bio-PLA",
+      "secondary_outer": "Ventilated Rigid PET Clamshell in Paperboard Outer Box",
+      "map_gas": "Equilibrium MAP: 3-5% O2 / 5-10% CO2 / Balance N2",
+      "barrier_specs": "OTR 1500-3000 cc/m²/day (High respiration permeability)"
+    },
+    "transit_specs": {
+      "target_temp_range": "0.0°C to 2.0°C",
+      "max_allowable_temp": "4.0°C",
+      "humidity_control": "90% - 95% RH",
+      "outer_shipper": "Vented Corrugated Master Cartons",
+      "thermal_liner": "Perforated Hydrophobic Kraft Liner",
+      "refrigerant": "Top-placed Water Ice / Gel Packs with Drainage Channels"
+    }
+  },
+  "Fresh Leafy Greens (e.g., Spinach, Cut Lettuce)": {
+    "base_shelf_life_days": 6,
+    "target_storage_temp_c": 2.0,
+    "fresh_ph_range": [5.8, 6.5],
+    "spoiled_ph_threshold": 7.2,
+    "ph_indicator": {
+      "dye": "Chlorophyllin / Anthocyanin Extract",
+      "substrate": "Sodium Alginate / PLA Composite Film",
+      "method": "Dip-coating and CaCl2 gelation",
+      "color_profile": "Bright Green (Fresh) -> Yellowish/Pale Brown (Spoiled)"
+    },
+    "packaging_materials": {
+      "primary_film": "Antifog LDPE / LLDPE Co-extruded Bag",
+      "secondary_outer": "Reusable Plastic Crates (RPC)",
+      "map_gas": "EMAP: 5% O2 / 5% CO2 / 90% N2",
+      "barrier_specs": "Controlled Gas Permeability with Anti-fog Coating"
+    },
+    "transit_specs": {
+      "target_temp_range": "1.0°C to 3.0°C",
+      "max_allowable_temp": "5.0°C",
+      "humidity_control": "95% RH",
+      "outer_shipper": "Reusable Plastic Crates (RPC) with Drainage",
+      "thermal_liner": "Biodegradable PLA Thermal Film",
+      "refrigerant": "Slush Ice / Gel Refrigerant Sheets"
+    }
+  },
+  "Fresh Fungi (e.g., Button Mushrooms, Portobello)": {
+    "base_shelf_life_days": 4,
+    "target_storage_temp_c": 2.0,
+    "fresh_ph_range": [6.0, 6.7],
+    "spoiled_ph_threshold": 7.4,
+    "ph_indicator": {
+      "dye": "Alizarin Red S / Roselle Anthocyanin",
+      "substrate": "Chitosan / Nanocellulose Membrane",
+      "method": "Solvent Casting with Citric Acid Cross-linking",
+      "color_profile": "Yellowish-Pink (Fresh) -> Purple/Dark Brown (Spoiled)"
+    },
+    "packaging_materials": {
+      "primary_film": "High Water Vapor Permeable PVC / Stretch Film or Bio-Paper Tray",
+      "secondary_outer": "Ventilated Pulp Fiber Cartons",
+      "map_gas": "5% O2 / 10% CO2 / 85% N2",
+      "barrier_specs": "High WVTR > 30 g/m²/day (Prevents sweat accumulation)"
+    },
+    "transit_specs": {
+      "target_temp_range": "1.0°C to 3.0°C",
+      "max_allowable_temp": "5.0°C",
+      "humidity_control": "85% - 90% RH",
+      "outer_shipper": "Pulp-molded Cushioning Trays in Corrugated Cartons",
+      "thermal_liner": "Absorbent Thermal Kraft Padding",
+      "refrigerant": "Dry Gel Ice Sheets"
+    }
+  },
+  "Medium Moisture Bakery (e.g., Whole Wheat / Sourdough Bread)": {
+    "base_shelf_life_days": 8,
+    "target_storage_temp_c": 20.0,
+    "fresh_ph_range": [5.0, 5.6],
+    "spoiled_ph_threshold": 6.3,
+    "ph_indicator": {
+      "dye": "Roselle Extract / Methyl Red Indicator",
+      "substrate": "Filter Paper Carrier Film",
+      "method": "Entrapment via Ionic Gelation",
+      "color_profile": "Orange (Fresh) -> Purple/Brown (Spoiled due to mold)"
+    },
+    "packaging_materials": {
+      "primary_film": "BOPP / Metallized PET Laminate",
+      "secondary_outer": "Folding Paperboard Carton",
+      "map_gas": "100% N2 Flush or 60% CO2 / 40% N2",
+      "barrier_specs": "WVTR < 1.0 g/m²/day (Critical for moisture barrier)"
+    },
+    "transit_specs": {
+      "target_temp_range": "15.0°C to 20.0°C",
+      "max_allowable_temp": "25.0°C",
+      "humidity_control": "< 50% RH",
+      "outer_shipper": "Heavy-duty Corrugated Outer Shipping Boxes",
+      "thermal_liner": "Thermal Blanket / Thermal Pallet Cover",
+      "refrigerant": "Passive Ambient Transport (No wet ice)"
+    }
+  }
+}

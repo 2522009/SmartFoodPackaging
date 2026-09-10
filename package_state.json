@@ -1,0 +1,15 @@
+{
+    "product_name": "Organic Malai Paneer",
+    "category": "High Protein / Dairy (e.g., Paneer, Cottage Cheese)",
+    "mfg_date": "2026-09-09",
+    "mfg_location": "Ahmedabad, India",
+    "initial_shelf_life_days": 7.0,
+    "remaining_shelf_life_days": 5.2,
+    "cold_chain_status": "EXCELLENT - Cold Chain Maintained",
+    "transit_summary": {
+        "origin": "Ahmedabad, India",
+        "destination": "Mumbai, India",
+        "transit_hours": 14.0,
+        "actual_avg_temp_c": 3.8
+    }
+}
