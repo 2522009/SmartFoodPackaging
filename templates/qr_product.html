@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ selected_food }} | Smart Food Packaging</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            color: #222;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 18px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .info {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .error {
+            background: #ffe5e5;
+            padding: 15px;
+            border-radius: 10px;
+            color: #a00000;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Smart Food Packaging</h1>
+
+        {% if selected_food %}
+            <p>{{ selected_food }}</p>
+        {% else %}
+            <p>Product Information</p>
+        {% endif %}
+    </div>
+
+
+    {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+    {% elif selected_data %}
+
+        <!-- BASIC INFORMATION -->
+        <div class="card">
+
+            <h2>Product Information</h2>
+
+            <div class="info">
+                <span class="label">Shelf Life:</span>
+                {{ selected_data.base_shelf_life_days }} days
+            </div>
+
+            <div class="info">
+                <span class="label">Storage Temperature:</span>
+                {{ selected_data.target_storage_temp_c }} °C
+            </div>
+
+        </div>
+
+
+        <!-- PH INDICATOR -->
+        <div class="card">
+
+            <h2>Freshness Indicator</h2>
+
+            <div class="info">
+                <span class="label">Dye:</span>
+                {{ selected_data.ph_indicator.dye }}
+            </div>
+
+            <div class="info">
+                <span class="label">Substrate:</span>
+                {{ selected_data.ph_indicator.substrate }}
+            </div>
+
+            <div class="info">
+                <span class="label">Method:</span>
+                {{ selected_data.ph_indicator.method }}
+            </div>
+
+        </div>
+
+
+        <!-- PACKAGING -->
+        <div class="card">
+
+            <h2>Recommended Packaging</h2>
+
+            <div class="info">
+                <span class="label">Primary Film:</span>
+                {{ selected_data.packaging_materials.primary_film }}
+            </div>
+
+            <div class="info">
+                <span class="label">Secondary Outer:</span>
+                {{ selected_data.packaging_materials.secondary_outer }}
+            </div>
+
+            <div class="info">
+                <span class="label">MAP Gas:</span>
+                {{ selected_data.packaging_materials.map_gas }}
+            </div>
+
+        </div>
+
+
+        <!-- TRANSIT -->
+        <div class="card">
+
+            <h2>Transport & Storage</h2>
+
+            <div class="info">
+                <span class="label">Target Temperature:</span>
+                {{ selected_data.transit_specs.target_temp_range }}
+            </div>
+
+            <div class="info">
+                <span class="label">Maximum Allowable Temperature:</span>
+                {{ selected_data.transit_specs.max_allowable_temp }}
+            </div>
+
+            <div class="info">
+                <span class="label">Humidity Control:</span>
+                {{ selected_data.transit_specs.humidity_control }}
+            </div>
+
+        </div>
+
+    {% else %}
+
+        <div class="error">
+            Product not found.
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
